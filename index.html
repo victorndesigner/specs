@@ -215,10 +215,13 @@
     }
 
     const container = document.getElementById("container-blocos");
-    blocosInfo.forEach(info => {
-      const bloco = criarBloco(info);
-      container.appendChild(bloco);
-    });
+    [...blocosInfo]
+  .sort((a, b) => (b.mostrar ? 1 : 0) - (a.mostrar ? 1 : 0))
+  .forEach(info => {
+    const bloco = criarBloco(info);
+    container.appendChild(bloco);
+  });
+
   </script>
 </body>
 </html>
