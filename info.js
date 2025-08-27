@@ -16,7 +16,7 @@ const blocosInfo = [
   {
     nome: "boltalt02",
     id: "150875749",
-    mostrar: false,
+    mostrar: true,
     imagem: "assets/images/boltalt02.png"
   },
   {
@@ -34,25 +34,19 @@ const blocosInfo = [
   {
     nome: "boltalt05",
     id: "150824641",
-    mostrar: false,
+    mostrar: true,
     imagem: "assets/images/boltalt05.png"
   },
   {
     nome: "boltalt06",
     id: "150899727",
-    mostrar: false,
+    mostrar: true,
     imagem: "assets/images/boltalt06.png"
   },
   {
     nome: "boltalt07",
     id: "150899734",
-    mostrar: false,
+    mostrar: true,
     imagem: "assets/images/boltalt07.png"
-  },
-  {
-    nome: "boltalt08",
-    id: "150901252",
-    mostrar: false,
-    imagem: "assets/images/boltalt08.png"
   }
 ];
