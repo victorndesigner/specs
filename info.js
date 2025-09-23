@@ -10,7 +10,7 @@ const blocosInfo = [
   {
     nome: "boltalt01",
     id: "150821550",
-    mostrar: false,
+    mostrar: true,
     imagem: "assets/images/boltalt01.png"
   },
   {
