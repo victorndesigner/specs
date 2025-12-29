@@ -1,0 +1,278 @@
+:root {
+    --cor-fundo: #131313;
+    --cor-texto: #e0e0e0;
+    --cor-primaria: rgb(153, 0, 255);
+    --cor-secundaria: rgb(164, 53, 255);
+    --cor-destaque: rgb(162, 0, 255);
+    --gradiente-bg: linear-gradient(135deg, #252525 0%, #161616 100%);
+    --vidro-bg: rgba(255, 255, 255, 0.05);
+    --vidro-borda: rgba(255, 255, 255, 0.1);
+    --sombra-card: 0 8px 32px 0 rgba(8, 8, 8, 0.37);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#particulas-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.cabecalho-logo {
+    text-align: center;
+    padding: 2rem 0;
+    animation: surgirSuave 1s ease-out;
+}
+
+.logo-topo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #a23fff;
+    margin: 0 auto 7px auto;
+    /* Bloco centralizado + margem inferior */
+    display: block;
+    /* Força quebra de linha */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover;
+}
+
+.logo-topo:hover {
+    transform: scale(1.05);
+    /* Mesma escala do título */
+    box-shadow: 0 0 10px rgba(153, 0, 255, 0.4), 0 0 20px rgba(164, 53, 255, 0.2);
+    /* Brilho externo suavizado */
+}
+
+.cabecalho-logo h1 {
+    font-size: 2.5rem;
+    margin-top: 0.5rem;
+    /* Remove text-transform para permitir maiúsculas/minúsculas */
+    letter-spacing: 1px;
+    color: #fff;
+    /* Cor padrão */
+
+    display: inline-block;
+    cursor: default;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.cabecalho-logo h1:hover {
+    transform: scale(1.02);
+    /* Escala reduzida */
+}
+
+.cabecalho-logo h1:hover .r-purple {
+    text-shadow: 0 0 20px rgba(225, 188, 255, 0.11), 0 0 5px var(--cor-secundaria);
+    /* Brilho reduzido */
+}
+
+.cabecalho-logo h1:hover .r-white {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.3);
+    /* Brilho reduzido */
+}
+
+.cabecalho-logo h1 .r-purple {
+    color: var(--cor-primaria);
+    transition: text-shadow 0.3s ease;
+}
+
+.cabecalho-logo h1 .r-white {
+    color: #fff;
+    transition: text-shadow 0.3s ease;
+}
+
+.servidor-info {
+    text-align: center;
+    color: #bbbbbb;
+    font-size: 0.9rem;
+    margin-top: -10px;
+    margin-bottom: 2rem;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    flex: 1;
+}
+
+.container-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.bloco-spec {
+    background: var(--vidro-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--vidro-borda);
+    border-radius: 20px;
+    padding: 20px;
+    width: 100%;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    opacity: 0;
+    /* Para animação de entrada */
+    transform: translateY(20px);
+}
+
+.bloco-spec:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(187, 134, 252, 0.2);
+    border-color: var(--cor-primaria);
+}
+
+.spec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spec-nome {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    /* Garante que o nome respeite as maiúsculas originais */
+}
+
+.imagem-container {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgb(51, 51, 51);
+    position: relative;
+}
+
+.imagem-spec {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s;
+}
+
+.bloco-spec:hover .imagem-spec {
+    transform: scale(1.02);
+}
+
+.placeholder-box {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-style: italic;
+    border: 2px dashed rgba(150, 39, 255, 0.404);
+    border-radius: 12px;
+}
+
+.btn-acao {
+    background: #333;
+    /* Fundo cinza */
+    color: white;
+    border: 0.15rem solid var(--cor-primaria);
+    /* Borda roxa */
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-acao:hover {
+    background: #444;
+    border: 2px solid #333333;
+    box-shadow: 0 0 10px var(--vidro-bg);
+    transform: scale(1.02);
+    /* Escala reduzida */
+}
+
+.btn-visualizar {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    background: transparent;
+    border: 1px solid var(--cor-primaria);
+    color: #fff;
+    /* Texto branco por padrão */
+}
+
+.btn-visualizar:hover {
+    background: var(--cor-primaria);
+    color: #fff;
+    /* Texto branco ao passar o mouse */
+    transform: scale(1.02);
+    /* Escala reduzida */
+}
+
+footer {
+    text-align: center;
+    padding: 3rem 0;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: #666;
+}
+
+footer a {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: #9720ff;
+    text-shadow: 0 0 10px rgb(151, 107, 255),
+        0 0 20px rgba(187, 134, 252, 0.4);
+}
+
+@keyframes surgirSuave {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .cabecalho-logo h1 {
+        font-size: 2rem;
+    }
+
+    .bloco-spec {
+        padding: 15px;
+    }
+}
